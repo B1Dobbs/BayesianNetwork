@@ -1,4 +1,8 @@
-Hello!
+# Weather Bayesian Network
+
+### This is a small implementation of bayesian solution for the following network
+
+![Weather Network](https://github.com/B1Dobbs/BayesianNetwork/graph.png)
 
 To run my application, run the main() in BaysianNetwork.java. 
 
