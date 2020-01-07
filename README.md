@@ -1,19 +1,31 @@
 # Weather Bayesian Network
 
-### This is a small implementation of bayesian solution for the following network
+### Implementation of the following Bayesian Network
 
 ![Weather Network](graph.png)
 
-To run my application, run the main() in BaysianNetwork.java. 
 
-Follow the prompts. You'll first identify query conditions in order 
-by selecting the associated number with the node then say whether its true or false.
+#### To Run
 
-Say 'No' to stop identifying query conditions.
+1. Navigate to src folder
+2. Run **javac BayesianNetwork.java**
+3. Run **java BayesianNetwork**
 
-Do the same for given conditions. 
+#### Using the network
 
-Say 'No' to run the query. 
+There will be a series of prompts to ask what probabilies need to be solved for and then what is known about the problem to be solved. 
 
-Note: I the sample queries from the homework programmatically written in the main() function. 
+1. Identify query conditions in order 
+by selecting the associated number with the node then say whether its true or false. <br> -  Say 'No' to stop identifying query conditions. 
+<br><br>
+2. Do the same for given conditions. <br> -  Say 'No' to stop identifying given conditions. <br><br> 
+3. The query will then be run.
+
+>Note: Progamatically written sample are commented out in the main() function. 
 To see their result, comment out the getUser..() functions and uncomment the test code. 
+
+#### What is the network solving?
+
+The Bayesian network accepts a statement consisting of the query (the conditions for which we want to know the probability for) and the given conditions (what we know already).
+
+>For example, the first sample query in BayesianNetwork.java is **Probability(SlipperyRoad = false | Winter = true)** <br><br> In English question form, this question would be **"What is the probability of the road not being slippery during winter?"**

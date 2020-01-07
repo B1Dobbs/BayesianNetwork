@@ -16,53 +16,21 @@ public class BayesianNetwork {
 		System.out.println("Please follow the prompts to determine the probability of an outcome.");
 		System.out.println("\n");
 		
-		//getUserQueryConditions(input, query, weatherNetwork);
-		//getUserGivenConditions(input, query, weatherNetwork);
+		//Getting user defined query and given conditions
+		getUserQueryConditions(input, query, weatherNetwork);
+		getUserGivenConditions(input, query, weatherNetwork);
 		
 		input.close();
 		
 		System.out.println("\nQuery: " + query.toString());
+
 		//Solve user's query
 		System.out.println("Result: " + ExactInference.calculate(query, weatherNetwork));
 		
-		
-		//TEST QUERIES - These are my test queries from the HW that I've commented out. 
-		//(Easier to hard code then go through the prompt above)
-		//0: Winter, 1: Sprinkler, 2: Rain, 3: Wet Grass, 4: Slippery Road 
-		Query testQuery = new Query();
-		testQuery.addCondition(weatherNetwork.get(4), false);
-		testQuery.addGiven(weatherNetwork.get(0), true);
-		System.out.println("\n" + testQuery.toString());
-		System.out.println("Result: " + ExactInference.calculate(testQuery, weatherNetwork));
-		
-		Query test1Query = new Query();
-		test1Query.addCondition(weatherNetwork.get(3), true);
-		test1Query.addGiven(weatherNetwork.get(1), true);
-		test1Query.addGiven(weatherNetwork.get(0), true);
-		System.out.println("\n" + test1Query.toString());
-		System.out.println("Result: " + ExactInference.calculate(test1Query, weatherNetwork));
-		
-		Query test2Query = new Query();
-		test2Query.addCondition(weatherNetwork.get(0), true);
-		test2Query.addGiven(weatherNetwork.get(3), true);
-		test2Query.addGiven(weatherNetwork.get(4), true);
-		System.out.println("\n" + test2Query.toString());
-		System.out.println("Result: " + ExactInference.calculate(test2Query, weatherNetwork));
-		
-		Query test3Query = new Query();
-		test3Query.addCondition(weatherNetwork.get(1), true);
-		test3Query.addGiven(weatherNetwork.get(3), true);
-		System.out.println("\n" + test3Query.toString());
-		System.out.println("Result: " + ExactInference.calculate(test3Query, weatherNetwork));
-		
-		Query test4Query = new Query();
-		test4Query.addCondition(weatherNetwork.get(0), true);
-		test4Query.addGiven(weatherNetwork.get(3), true);
-		test4Query.addGiven(weatherNetwork.get(2), true);
-		test4Query.addGiven(weatherNetwork.get(4), true);
-		System.out.println("\n" + test4Query.toString());
-		System.out.println("Result: " + ExactInference.calculate(test4Query, weatherNetwork));
-		
+
+		/*TEST QUERIES - uncomment runTestQueries() to see result */
+
+		//runTestQueries(weatherNetwork);
 		
 	}
 	
@@ -181,6 +149,51 @@ public class BayesianNetwork {
 		network.add(slipperyRoad);
 		
 		return network;
+	}
+
+	public static void runTestQueries(ArrayList<Node> weatherNetwork){
+		//The following are the order in which the nodes were added.
+		//	0: Winter, 1: Sprinkler, 2: Rain, 3: Wet Grass, 4: Slippery Road
+
+		//Probability(SlipperyRoad = false | Winter = true)
+		Query testQuery = new Query();
+		testQuery.addCondition(weatherNetwork.get(4), false);
+		testQuery.addGiven(weatherNetwork.get(0), true);
+		System.out.println("\n" + testQuery.toString());
+		System.out.println("Result: " + ExactInference.calculate(testQuery, weatherNetwork));
+		
+		//Probability(WetGrass = true | Sprinkler = true, Winter = true)
+		Query test1Query = new Query();
+		test1Query.addCondition(weatherNetwork.get(3), true);
+		test1Query.addGiven(weatherNetwork.get(1), true);
+		test1Query.addGiven(weatherNetwork.get(0), true);
+		System.out.println("\n" + test1Query.toString());
+		System.out.println("Result: " + ExactInference.calculate(test1Query, weatherNetwork));
+		
+		//Probability(Winter = true | WetGrass = true, SlipperyRoad = true)
+		Query test2Query = new Query();
+		test2Query.addCondition(weatherNetwork.get(0), true);
+		test2Query.addGiven(weatherNetwork.get(3), true);
+		test2Query.addGiven(weatherNetwork.get(4), true);
+		System.out.println("\n" + test2Query.toString());
+		System.out.println("Result: " + ExactInference.calculate(test2Query, weatherNetwork));
+		
+		//Probability(Sprinkler = true | WetGrass = true)
+		Query test3Query = new Query();
+		test3Query.addCondition(weatherNetwork.get(1), true);
+		test3Query.addGiven(weatherNetwork.get(3), true);
+		System.out.println("\n" + test3Query.toString());
+		System.out.println("Result: " + ExactInference.calculate(test3Query, weatherNetwork));
+		
+		//Probability(Winter = true | WetGrass = true, Rain = true, SlipperyRoad = true)
+		Query test4Query = new Query();
+		test4Query.addCondition(weatherNetwork.get(0), true);
+		test4Query.addGiven(weatherNetwork.get(3), true);
+		test4Query.addGiven(weatherNetwork.get(2), true);
+		test4Query.addGiven(weatherNetwork.get(4), true);
+		System.out.println("\n" + test4Query.toString());
+		System.out.println("Result: " + ExactInference.calculate(test4Query, weatherNetwork));
+
 	}
 
 }
