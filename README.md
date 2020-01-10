@@ -7,9 +7,9 @@
 
 #### To Run
 
-1. Navigate to src folder
-2. Run **javac BayesianNetwork.java**
-3. Run **java BayesianNetwork**
+1. Navigate to root level directory of project
+2. Run **ant all**
+3. Run **run.bat**
 
 #### Using the network
 
