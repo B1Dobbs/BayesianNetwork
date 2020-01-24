@@ -2,7 +2,7 @@
 
 ### Implementation of the following Bayesian Network
 
-![Weather Network](graph.png)
+<img src="docs/graph.png" width="400" height="300">
 
 
 #### To Run
