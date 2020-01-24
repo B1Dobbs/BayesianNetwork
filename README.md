@@ -1,9 +1,7 @@
 # Weather Bayesian Network
 
 ### Implementation of the following Bayesian Network
-
 <img src="docs/graph.png" width="400" height="300">
-
 
 #### To Run
 
